@@ -9,8 +9,9 @@ My intent is to share this information with anyone who may also have a need to e
 VMWare products and potentially save them some time, effort and frustration by allowing them
 to cheat off my homework.
 
+<pre>
 ###--- Platform Used ---###
-Hardware: 
+Hardware:
 • Laptop
     Make/Model: Asus ProArt Studiobook
     CPU(s): 1 x 12th Gen Intel(r) Core(TM) i7-12700H
@@ -21,13 +22,15 @@ Hardware:
     RAM: 32GB (2 x 16GB DDR-5)
     HDD: SSD/EMMC 1 - 953GB, Samsung MZVL21T0HCLR-00B00
     OS: Microsoft Windows 11 Pro 64-bit 10.0.22621
-
+</pre>
+<pre>
 Software:
-  • Quick CPU x64 (version 4.6.0.0)
-  • VMware® Workstation 17 Pro (17.0.2 build-21581411) [Licensed Product]
-  • VMware ESXi 8.0.1/Build 21813344 [60-day trial license]
-  • VMware vSphere version 8.0.1.00000 [60-day trial license]
-
+  • <a href="https://coderbag.com">Quick CPU x64 - version 4.6.0.0</a>
+  • <a href="https://www.vmware.com/products/workstation-pro.html">VMware® Workstation 17 Pro (17.0.2 build-21581411) [Licensed Product]</a>
+  • <a href="https://www.vmware.com/products/esxi-and-esx.html">VMware ESXi 8.0.1/Build 21813344 [60-day trial license]</a>
+  • <a href="https://www.vmware.com/products/vsphere.html">VMware vSphere version 8.0.1.00000 [60-day trial license]</a>
+</pre>
+<pre>
 ###--- Installation and Configuration ---###
 The following steps assume that you have already installed VMware Workstation 17 Pro and are ready
 to build the VMs required to form the lab environment.
@@ -35,7 +38,7 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
       accomplished using a freeware virtualization product such as Oracle's VirtualBox solution.
       The key would be setting up virtual networks that would perform NATing and DNS IP assignments.
 
-• Quick CPU x64(https://coderbag.com/):
+• Quick CPU x64:
   My intial install attempts of the VMware ESXi product performed abismally. Viewing the Windows Resource
   Manager app, I discovered that several of the vCPUs were "Parked" and not being utilized. This is largely
   because each OS vendor sets specific criteria as to when and how many cores are spun up and deployed depending
@@ -64,11 +67,14 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
             Network Adapter: NAT
             USB Controller: Present
             Display: Auto Detect
-                     Note that I use the Display Scaling > Strecthc mode > Free stretch option on these
+                     Note that I use the <em>Display Scaling > Stretch mode > Free</em> stretch option on these
                      VM consoles; otherwise, the console font is too small to easily read when booting up. 
 
             Here is a good video that walks you through the process of installing and configuring ESXi on a
             VM running on VMware Workstation Pro:
-              ♦ Installation of ESXi 8.0 Step by Step on VMware Workstation Pro
-                https://youtu.be/HDpPOx7g0Lk
+              ♦ <a href="https://youtu.be/HDpPOx7g0Lk">Installation of ESXi 8.0 Step by Step on VMware Workstation Pro</a>
+                
 
+
+
+</pre>
