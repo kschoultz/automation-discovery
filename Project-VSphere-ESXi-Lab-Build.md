@@ -37,7 +37,8 @@ to build the VMs required to form the lab environment.
 Note: Even though I haven't made the attempt, I strongly suspect that the same build process could be
       accomplished using a freeware virtualization product such as Oracle's VirtualBox solution.
       The key would be setting up virtual networks that would perform NATing and DNS IP assignments.
-
+</pre>
+<pre>
 • Quick CPU x64:
   My intial install attempts of the VMware ESXi product performed abismally. Viewing the Windows Resource
   Manager app, I discovered that several of the vCPUs were "Parked" and not being utilized. This is largely
@@ -50,19 +51,21 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
   laptop while running all the required lab VMs at once.
 
   This software is basically freeware with the option of providing a monetary gift for support.
-
+</pre>
+<pre>
 • Step 1: Download ISO installation files for the following software:
           ○ VMware ESXi 8.0.1 or later [60-day trial license]
           ○ VMware vSphere version 8.0.1.00000 or later [60-day trial license]
           ○ Red Hat Enterprise Linux 9.2 (Plow) - 64bit [60-day trial license]
-
+</pre>
+<pre>
 • Step 2: Install and configure the VMware ESXi Hypervisor product 
           You'll need to create new VM using the ESXi Hypervisor ISO install file.
           Here are VM settings I used:
             Memory: 16 GB
             Processors: 8
             Hard Disk(SCSI): 40 GB {where the ESXi binaries get installed}
-            Hard Disk 2 (ScSI): 142 GB {for establishing a Data Store to be used by hosted VMs}
+            Hard Disk 2 (SCSI): 142 GB {for establishing a Data Store to be used by hosted VMs}
             CD/DVD (IDE): points to the install ISO file
             Network Adapter: NAT
             USB Controller: Present
@@ -73,8 +76,4 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
             Here is a good video that walks you through the process of installing and configuring ESXi on a
             VM running on VMware Workstation Pro:
               ♦ <a href="https://youtu.be/HDpPOx7g0Lk">Installation of ESXi 8.0 Step by Step on VMware Workstation Pro</a>
-                
-
-
-
 </pre>
