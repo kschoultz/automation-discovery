@@ -14,3 +14,10 @@ This is a simple repository used to record my personal exploits and observations
          details of how to accomplish this.
 </h3>
 </pre>
+
+<pre>
+<h3><strong>Phase 3: Enable Juju Automation on the VM</strong>
+         Please review the <a href="https://github.com/kschoultz/automation-discovery/blob/main/Project-Juju-Automation-Enablement.md">Project-Juju-Automation-Enablement.md </a> document for the step-by-step
+         details of how to accomplish this.
+</h3>
+</pre>
