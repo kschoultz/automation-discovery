@@ -70,7 +70,6 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
 • Step 1: Download ISO installation files for the following software:
           ○ <a href="https://www.vmware.com/products/esxi-and-esx.html">VMware ESXi 8.0.1 or later [60-day trial license]</a>
           ○ <a href="https://www.vmware.com/products/vsphere.html">VMware vSphere version 8.0.1.00000 or later [60-day trial license]</a>
-          ○ Red Hat Enterprise Linux 9.2 (Plow) - 64bit [60-day trial license]
 </pre>
 <pre>
 • Step 2: Install and configure the VMware ESXi Hypervisor product 
