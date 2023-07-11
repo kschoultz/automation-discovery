@@ -13,6 +13,7 @@ details of how to build out the ESxi/vSphere lab environment.
 Software:
   • <a href="https://www.redhat.com/en/technologies/linux-platforms/enterprise-linux">Red Hat Enterprise Linux 9.2 (Plow) - 64bit [60-day trial license]</a>
   • <a href="https://juju.is/docs/olm">Canonical Juju</a>
+  • Additional Reference: <a href="https://docs.fedoraproject.org/en-US/epel/">Extra Packages for Enterprise Linux (EPEL)</a>
 </pre>
 
 <pre>
