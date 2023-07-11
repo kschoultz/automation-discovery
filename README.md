@@ -9,7 +9,7 @@ This is a simple repository used to record my personal exploits and observations
 </h3>
 </pre>
 <pre>
-<h3><strong>Phase 2: Automate the creation and configuration of VMs</strong>
+<h3><strong>Phase 2: Creation and configure the Automation VM</strong>
          Please review the <a href="https://github.com/kschoultz/automation-discovery/blob/main/Project-Automation-VM-Creation.md">Project-Automation-VM-Creation.md </a> document for the step-by-step
          details of how to accomplish this.
 </h3>
