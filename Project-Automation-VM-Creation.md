@@ -109,3 +109,15 @@ data center and clusters.
 
                         juju help commands                
 </pre>
+<pre>
+• Step 3: (optional) For whatever reason, the <em>pip</em> python package manager isn't available on the RHEL 9 trial version.
+          Since we aren't registering these test VMs with the Red Hat Support Service, the Red Hat supported RPMs aren't
+          available for us to install it.
+
+          I used the below commands as a workaround to install pip:
+            ○ <strong>wget https://bootstrap.pypa.io/get-pip.py</strong>
+            ○ <strong>python3 ./get-pip.py</strong>
+
+          I then was able to use pip to install yamllint:
+            ○ <strong>python -m pip install --user yamllint</strong>
+</pre>
