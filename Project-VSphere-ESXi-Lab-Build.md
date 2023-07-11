@@ -75,5 +75,5 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
 
             Here is a good video that walks you through the process of installing and configuring ESXi on a
             VM running on VMware Workstation Pro:
-              ♦ <a href="https://youtu.be/HDpPOx7g0Lk">Installation of ESXi 8.0 Step by Step on VMware Workstation Pro</a>
+              ♦ <a href="https://youtu.be/HDpPOx7g0Lk">Installation of ESXi 8.0 Step by Step on VMware Workstation Pro (video 15:54)</a>
 </pre>
