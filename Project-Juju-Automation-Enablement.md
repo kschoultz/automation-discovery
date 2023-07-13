@@ -15,9 +15,9 @@ The following steps are derived from the <a href="https://juju.is/docs/olm/vmwar
     vsp-cloud:
       type: vsphere
       auth-types: [userpass]
-      endpoint: 192.1681.121.129  # the IPAddr for VMware vCenter Server
+      endpoint: 192.168.121.129  # the IPAddr for VMware vCenter Server
       regions:
-      dc0: {}  # these empty maps are necessary
+      DC0: {}  # these empty maps are necessary
 </pre>
 
 <pre>
@@ -42,12 +42,13 @@ The following steps are derived from the <a href="https://juju.is/docs/olm/vmwar
 
             This operation can be applied to both a copy on this client and to the one on a controller.
             No current controller was detected and there are no registered controllers on this client: either bootstrap one or register one.
+
             Enter credential name: vsp-cloud-creds
 
             Regions
-              dc0
+              DC0
 
-            Select region [any region, credential is not region specific]: dc0
+            Select region [any region, credential is not region specific]: DC0
 
             Using auth-type "userpass".
 
@@ -55,7 +56,7 @@ The following steps are derived from the <a href="https://juju.is/docs/olm/vmwar
 
             Enter password: ************
 
-            Enter vmfolder (optional): juju-root
+            Enter vmfolder (optional):
 
             Credential "vsp-cloud-creds" added locally for cloud "vsp-cloud".
 </pre>
@@ -70,3 +71,43 @@ The following steps are derived from the <a href="https://juju.is/docs/olm/vmwar
             Client Credentials:
             Cloud      Credentials
             vsp-cloud  vsp-cloud-creds
+
+          ○ <strong>juju show-credential</strong>
+
+            client-credentials:
+              vsp-cloud:
+                vsp-cloud-creds:
+                  content:
+                    auth-type: userpass
+                    user: administrator@vsphere.local
+</pre>
+
+<pre>
+• Step 6: Create a controller
+          You are now ready to create a Juju controller for cloud ‘vsp-cloud’:
+
+          ○ <strong>juju bootstrap vsp-cloud vsp-controller</strong>
+
+          Creating Juju controller "vsp-controller" on vsp-cloud/DC0
+          Looking for packaged Juju agent version 2.9.43 for amd64
+          Located Juju agent version 2.9.43-ubuntu-amd64 at https://streams.canonical.com/juju/tools/agent/2.9.43/juju-2.9.43-linux-amd64.tgz
+          WARNING empty string passed as vm-folder, using Datacenter root folder instead
+          Launching controller instance(s) on vsp-cloud/DC0...
+          WARNING empty string passed as vm-folder, using Datacenter root folder instead
+          - juju-4efe93-0 (arch=amd64 mem=3.5G)
+          Installing Juju agent on bootstrap instance
+          Fetching Juju Dashboard 0.8.1
+          Waiting for address
+          Attempting to connect to 192.168.121.132:22
+          Attempting to connect to fe80::250:56ff:fe3a:72e7:22
+          Connected to 192.168.121.132
+          Running machine configuration script...
+          Bootstrap agent now started
+          Contacting Juju controller at 192.168.121.132 to verify accessibility...
+
+          Bootstrap complete, controller "vsp-controller" is now available
+          Controller machines are in the "controller" model
+          Initial model "default" added
+</pre>
+
+https://dl.fedoraproject.org/pub/fedora/linux/releases/36/Everything/source/tree/Packages/r/
