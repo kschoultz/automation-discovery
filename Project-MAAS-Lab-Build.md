@@ -97,4 +97,18 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
           <ins>Notes and Observations</ins>
           ○ PostgreSQL: The <strong>sudo apt install -y postgresql</strong> command will likely install the
                         latest version (in my case 15.3).
+
+          ○ I followed the <em>"How to initialise MAAS for a test or POC</em> section to initialize MAAS.
+            "To initialise the MAAS snap in a test/POC configuration, simply use the --help flag with <em>maas init</em> and 
+            follow the instructions." This produced the below output - which I followed.
+
+               "If you want to set up PostgreSQL for a non-production deployment on
+                this machine, and configure it for use with MAAS, you can install
+                the maas-test-db snap before running 'maas init':
+                
+                    sudo snap install maas-test-db
+                    sudo maas init region+rack --database-uri maas-test-db:///
+                
+                the following arguments are required: run_mode"
+
 </pre>
