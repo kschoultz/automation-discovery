@@ -95,5 +95,6 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
           Follow the steps outlined on the <a href="https://maas.io/docs/how-to-get-started-with-maas">How to get started with MAAS</a> documentation.
 
           <ins>Notes and Observations</ins>
-          ○ PostgreSQL: The <strong>sudo apt install -y postgresql</strong> command will likely install the latest version (in my case 15.3).
+          ○ PostgreSQL: The <strong>sudo apt install -y postgresql</strong> command will likely install the
+                        latest version (in my case 15.3).
 </pre>
