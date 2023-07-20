@@ -69,3 +69,24 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
 • Step 1: Download ISO installation files for the following software:
           ○ <a href="https://ubuntu.com/download/server">Ubuntu Server 23.04 (or later)</a>
 </pre>
+<pre>
+• Step 2: Install and configure the Ubuntu Server product; this will be called the <em>MAAS-Controller</em>. 
+          You'll need to create new VM using the <strong>ubuntu-23.04-live-server-amd64.iso</strong> install file.
+          Here are VM settings I used:
+            Memory: 16 GB
+            Processors: 8
+            Hard Disk(SCSI): 160 GB
+            CD/DVD (IDE): points to the install ISO file
+            Network Adapter: VMnet8(NAT)
+            USB Controller: Present
+            Display: Auto Detect
+                     Note that I use the <em>Display Scaling > Stretch mode > Free</em> stretch option on these
+                     VM consoles; otherwise, the console font is too small to easily read when booting up. 
+</pre>
+<pre>
+• Step 3: (Optional) Install the Ubuntu Desktop product
+          Post-creation of the Ubuntu MAAS-Controller above, I chose to install the Ubuntu Desktop.
+          This makes it easier to simulatneously install and configure software and services, as well as reference
+          online manuals and searches without having to constantly switch between VMs and my laptop.
+          Note that the install takes about 2GB of storage space and a good bit of time (~30-45 minutes). 
+</pre>
