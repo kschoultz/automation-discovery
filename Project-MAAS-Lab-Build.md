@@ -90,3 +90,10 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
           online manuals and searches without having to constantly switch between VMs and my laptop.
           Note that the install takes about 2GB of storage space and a good bit of time (~30-45 minutes). 
 </pre>
+<pre>
+• Step 4: MAAS Install
+          Follow the steps outlined on the <a href="https://maas.io/docs/how-to-get-started-with-maas">How to get started with MAAS</a> documentation.
+
+          <ins>Notes and Observations</ins>
+          ○ PostgreSQL: TBD
+</pre>
