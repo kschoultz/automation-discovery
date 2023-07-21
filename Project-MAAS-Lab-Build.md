@@ -155,6 +155,23 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
                   sudo maas config-tls enable
 
     
+                *** = Just hit enter key here (no value selected)
+    
+                keith@maas-controller:~$ sudo maas configauth
+                [sudo] password for keith: 
+                URL for the Canonical RBAC service (leave blank if not using the service): ***
+                Path of the Candid authentication agent file (leave blank if not using the service): *** 
+                 
+                keith@maas-controller:~$ sudo maas createadmin
+                Username: maasadmin
+                Password: 
+                Again: 
+                Email: maasadmin@local.domain
+                
+                Import SSH keys [] (lp:user-id or gh:user-id):  ***
+                keith@maas-controller:~$  
+
+    
                 keith@maas-controller:~$ sudo maas status
                 bind9                            RUNNING   pid 39855, uptime 0:05:41
                 dhcpd                            STOPPED   Not started
