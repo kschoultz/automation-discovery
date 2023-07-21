@@ -99,17 +99,59 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
                         The <strong>sudo apt install -y postgresql</strong> command will likely install the
                         latest version (in my case 15.3).
 
-          ○ I followed the <em>"How to initialise MAAS for a test or POC</em> section to initialize MAAS.
-            "To initialise the MAAS snap in a test/POC configuration, simply use the --help flag with <em>maas init</em> and 
-            follow the instructions." This produced the below output - which I followed.
+                            # Postgres v15.3 Initial Setup
+                            # Necessary steps from: https://stackoverflow.com/questions/1471571/how-to-configure-postgresql-for-the-first-time
+                            
+                            postgres@maas-controller:~$ psql template1
+                            psql (15.3 (Ubuntu 15.3-0ubuntu0.23.04.1))
+                            Type "help" for help.
+                            
+                            template1=# ALTER USER postgres with encrypted password '{postgres-passwd}';
+                            ALTER ROLE
+                                                        
+                            keith@maas-controller:~$ sudo vi /etc/postgresql/15/main/pg_hba.conf                            
+                                # Database administrative login by Unix domain socket
+                                local   all             postgres                                md5
+                            
+                            keith@maas-controller:~$ sudo /etc/init.d/postgresql restart
+                            Restarting postgresql (via systemctl): postgresql.service.
+                            
+                            sudo createuser -U postgres -d -e -E -l -P -r -s keith
+    
+          ○ MAAS Install: <strong>Do this second!</strong>
+                sudo snap install --channel=3.3 maas
 
-               "If you want to set up PostgreSQL for a non-production deployment on
-                this machine, and configure it for use with MAAS, you can install
-                the maas-test-db snap before running 'maas init':
-                
-                    sudo snap install maas-test-db
-                    sudo maas init region+rack --database-uri maas-test-db:///
-                
-                the following arguments are required: run_mode"
+          ○ MAAS Initialization: <stong> Do this third!</stong>
+            I followed the <em>"How to initialise MAAS for productionC</em> section to initialize MAAS.
 
+                $MAAS_DBUSER = maasadmin
+                $MAAS_DBPASS = {maasadmin-passwd}
+                $MAAS_DBNAME = maascntlrdb
+                $HOSTNAME = localhost
+
+                $ sudo -i -u postgres psql -c "CREATE USER \"maasadmin\" WITH ENCRYPTED PASSWORD 'mAAsD3ployment'"  
+
+                $ sudo -i -u postgres createdb -O "maasadmin" "maascntlrdb"
+
+                $ vi /etc/postgresql/15/main/pg_hba.conf
+                    # TYPE  DATABASE        USER            ADDRESS                 METHOD
+                    host    maascntlrdb    	maasadmin       0/0                     md5
+
+                keith@maas-controller:~$ sudo maas init region+rack --database-uri "postgres://maasadmin:mAAsD3ployment@localhost/maascntlrdb"
+                MAAS URL [default=http://192.168.121.137:5240/MAAS]: 
+                MAAS has been set up.             
+
+                If you want to configure external authentication or use
+                MAAS with Canonical RBAC, please run
+                
+                  sudo maas configauth
+                
+                To create admins when not using external authentication, run
+                
+                  sudo maas createadmin
+                
+                To enable TLS for secured communication, please run
+                
+                  sudo maas config-tls enable
+                
 </pre>
