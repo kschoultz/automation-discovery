@@ -153,5 +153,17 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
                 To enable TLS for secured communication, please run
                 
                   sudo maas config-tls enable
+
+    
+                keith@maas-controller:~$ sudo maas status
+                bind9                            RUNNING   pid 39855, uptime 0:05:41
+                dhcpd                            STOPPED   Not started
+                dhcpd6                           STOPPED   Not started
+                http                             RUNNING   pid 40321, uptime 0:05:23
+                ntp                              RUNNING   pid 39987, uptime 0:05:38
+                proxy                            RUNNING   pid 40294, uptime 0:05:26
+                rackd                            RUNNING   pid 39858, uptime 0:05:41
+                regiond                          RUNNING   pid 39860, uptime 0:05:41
+                syslog                           RUNNING   pid 40267, uptime 0:05:28
                 
 </pre>
