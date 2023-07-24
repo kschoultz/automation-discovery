@@ -184,3 +184,97 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
                 syslog                           RUNNING   pid 40267, uptime 0:05:28
                 
 </pre>
+
+<pre>
+<<<a href="https://maas.io/docs/how-to-do-a-fresh-install-of-maas"> From: How to configure MAAS</a> >>
+
+# Generate the API-key for the login 
+<strong>sudo maas apikey --username=maasadmin > api-key-file</strong>
+
+# Login with the following command
+<strong>maas login maasadmin http://192.168.121.137:5240/MAAS < api-key-file</strong>
+
+<<<a href="https://maas.io/docs/try-out-the-maas-cli"> From: Try out the MAAS CLI</a> >>
+# Set the DNS server IP address
+<strong>maas maasadmin maas set-config name=upstream_dns value=8.8.8.8</strong>
+
+# find a usable fabric by picking a valid bridge IP address like this:
+<strong>maas maasadmin subnet read 192.168.121.0/24 | grep fabric_id</strong>
+    "fabric_id": 0,
+
+# find the name of the primary rack controller:
+<strong>maas maasadmin rack-controllers read | grep hostname | cut -d '"' -f 4</strong>
+maas-controller
+
+# turn on DHCP like this:
+<strong>maas maasadmin ipranges create type=dynamic start_ip=192.168.121.150 end_ip=192.168.121.170</strong>
+Success.
+Machine-readable output follows:
+{
+    "subnet": {
+        "name": "192.168.121.0/24",
+        "description": "",
+        "vlan": {
+            "vid": 0,
+            "mtu": 1500,
+            "dhcp_on": false,
+            "external_dhcp": null,
+            "relay_vlan": null,
+            "fabric_id": 0,
+            "space": "undefined",
+            "name": "untagged",
+            "primary_rack": null,
+            "fabric": "fabric-0",
+            "secondary_rack": null,
+            "id": 5001,
+            "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+        },
+        "cidr": "192.168.121.0/24",
+        "rdns_mode": 2,
+        "gateway_ip": "192.168.121.2",
+        "dns_servers": [],
+        "allow_dns": true,
+        "allow_proxy": true,
+        "active_discovery": false,
+        "managed": true,
+        "disabled_boot_architectures": [],
+        "space": "undefined",
+        "id": 1,
+        "resource_uri": "/MAAS/api/2.0/subnets/1/"
+    },
+    "type": "dynamic",
+    "start_ip": "192.168.121.150",
+    "end_ip": "192.168.121.170",
+    "user": {
+        "is_superuser": true,
+        "username": "maasadmin",
+        "email": "maasadmin@local.domain",
+        "is_local": true,
+        "resource_uri": "/MAAS/api/2.0/users/maasadmin/"
+    },
+    "comment": "",
+    "id": 1,
+    "resource_uri": "/MAAS/api/2.0/ipranges/1/"
+}
+
+# DHCP switch-on
+<strong>maas maasadmin vlan update 0 untagged dhcp_on=True primary_rack=maas-controller</strong>
+Success.
+Machine-readable output follows:
+{
+    "vid": 0,
+    "mtu": 1500,
+    "dhcp_on": true,
+    "external_dhcp": null,
+    "relay_vlan": null,
+    "fabric_id": 0,
+    "space": "undefined",
+    "name": "untagged",
+    "primary_rack": "y7sbwq",
+    "fabric": "fabric-0",
+    "secondary_rack": null,
+    "id": 5001,
+    "resource_uri": "/MAAS/api/2.0/vlans/5001/"
+}
+  
+</pre>
