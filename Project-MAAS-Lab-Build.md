@@ -66,6 +66,8 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
 </pre>
 <pre>
 <ins>Software Installs and VM Configurations</ins>
+Note: Many of the steps below are taken from the <a href="https://youtu.be/6IRiUbUxbWk">Ubuntu MAAS Openstack install on VMware workstation video (30:37)</a>.
+    
 • Step 1: Download ISO installation files for the following software:
           ○ <a href="https://ubuntu.com/download/server">Ubuntu Server 23.04 (or later)</a>
 </pre>
