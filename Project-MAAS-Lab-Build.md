@@ -120,16 +120,22 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
 
             ♦ Restart the server to ensure all of the above settings are retained upon reboot.
 </pre>
-
 <pre>
-• Step 3: (Optional) Install the Ubuntu Desktop product
+• Step 4: Install the <strong>net-tools</strong> utility package:
+            ♦ sudo apt install net-tools
+
+• Step 5: Install the <strong>inetutils-traceroute</strong> package:
+            ♦ sudo apt install inetutils-traceroute
+</pre>
+<pre>
+• Step 6: (Optional) Install the Ubuntu Desktop product
           Post-creation of the Ubuntu MAAS-Controller above, I chose to install the Ubuntu Desktop.
           This makes it easier to simulatneously install and configure software and services, as well as reference
           online manuals and searches without having to constantly switch between VMs and my laptop.
           Note that the install takes about 2GB of storage space and a good bit of time (~30-45 minutes). 
 </pre>
 <pre>
-• Step 4: MAAS Install
+• Step 7: MAAS Install
           Follow the steps outlined on the <a href="https://maas.io/docs/how-to-get-started-with-maas">How to get started with MAAS</a> documentation.
 
           <ins>Notes and Observations</ins>
