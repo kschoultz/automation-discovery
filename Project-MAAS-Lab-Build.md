@@ -73,16 +73,54 @@ Note: Even though I haven't made the attempt, I strongly suspect that the same b
 • Step 2: Install and configure the Ubuntu Server product; this will be called the <em>MAAS-Controller</em>. 
           You'll need to create new VM using the <strong>ubuntu-23.04-live-server-amd64.iso</strong> install file.
           Here are VM settings I used:
-            Memory: 16 GB
-            Processors: 8
-            Hard Disk(SCSI): 160 GB
+            Memory: 8 GB
+            Processors: 4
+            Hard Disk(SCSI): 40 GB
             CD/DVD (IDE): points to the install ISO file
-            Network Adapter: VMnet8(NAT)
+            Network Adapter: Custom(VMnet0) <--- this is a bridged network.
             USB Controller: Present
             Display: Auto Detect
                      Note that I use the <em>Display Scaling > Stretch mode > Free</em> stretch option on these
                      VM consoles; otherwise, the console font is too small to easily read when booting up. 
 </pre>
+<pre>
+• Step 3: Post-Install run the below commands from the <a href="https://www.makeuseof.com/configure-network-ubuntu-server/">How to Configure Networking on Ubuntu Servers</a> site
+          to establish the static IP address for the bridged NIC.
+
+            ♦ ls /etc/netplan
+                # Output
+                00-installer-config.yaml
+         
+            ♦ sudo cp /etc/netplan/00-installer-config.yaml 00-installer-config.yaml.org
+
+            ♦ sudo vim /etc/netplan/00-installer-config.yaml
+    
+                network:
+                  ethernets:
+                    ens33:
+                      dhcp4: no
+                      addresses: [192.168.1.111/24]
+                      gateway4: 192.168.1.1
+                     #ens34:
+                       #dhcp4: no
+                       #addresses: [10.1.1.1/24]
+                  version: 2
+
+            ♦ sudo netplan apply
+
+            ♦ You can now check the changes using the following command:
+                ip addr
+
+            ♦ sudo vim /etc/systemd/resolved.conf
+                [Resolve]
+                ...
+                DNS=8.8.8.8
+                FallbackDNS=8.8.4.4
+                ...
+
+            ♦ Restart the server to ensure all of the above settings are retained upon reboot.
+</pre>
+
 <pre>
 • Step 3: (Optional) Install the Ubuntu Desktop product
           Post-creation of the Ubuntu MAAS-Controller above, I chose to install the Ubuntu Desktop.
