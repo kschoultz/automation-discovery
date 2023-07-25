@@ -80,6 +80,7 @@ Note: Many of the steps below are taken from the <a href="https://youtu.be/6IRiU
             Hard Disk(SCSI): 40 GB
             CD/DVD (IDE): points to the install ISO file
             Network Adapter: Custom(VMnet0) <--- this is a bridged network.
+                Make sure you click on the <em>Advanced</em> button and generate a MAC address for the NIC.
             USB Controller: Present
             Display: Auto Detect
                      Note that I use the <em>Display Scaling > Stretch mode > Free</em> stretch option on these
@@ -139,6 +140,11 @@ Note: Many of the steps below are taken from the <a href="https://youtu.be/6IRiU
               ○ Is NOT Checked: "Use local DHCP service to distribute IP addresses to VMs
               ○ Subnet IP: 10.1.1.0 
               ○ Subnet Mask: 255.255.255.0
+</pre>
+<pre>
+• Step 7: Add another network adapter (NIC) to the MAAS-Controller VM
+          Shutdown the VM, edit the settings and add another NIC that utilizes the newly created <em>Host Only (VMnet1)</em> network above.
+          Make sure you click on the <em>Advanced</em> button and generate a MAC address for the NIC.
 </pre>
 <pre>
 • Step 6: (Optional) Install the Ubuntu Desktop product
