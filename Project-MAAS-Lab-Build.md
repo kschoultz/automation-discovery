@@ -136,7 +136,7 @@ Note: Many of the steps below are taken from the <a href="https://youtu.be/6IRiU
 
           ♦ Using the VMWare Virtual Network Editor, create a Host Only network ensuring the following:
               ○ Name: VMnet1
-              ○ Is Checked: "Connect a host virtual adapter to this netwo7rk
+              ○ Is Checked: "Connect a host virtual adapter to this network
               ○ Is NOT Checked: "Use local DHCP service to distribute IP addresses to VMs
               ○ Subnet IP: 10.1.1.0 
               ○ Subnet Mask: 255.255.255.0
