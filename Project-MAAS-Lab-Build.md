@@ -130,6 +130,17 @@ Note: Many of the steps below are taken from the <a href="https://youtu.be/6IRiU
             ♦ sudo apt install inetutils-traceroute
 </pre>
 <pre>
+• Step 6: Now that we have the bridged network up and running, we need to add an internal <em>Host Only</em> network
+          to the MAAS-Controller VM.
+
+          ♦ Using the VMWare Virtual Network Editor, create a Host Only network ensuring the following:
+              ○ Name: VMnet1
+              ○ Is Checked: "Connect a host virtual adapter to this netwo7rk
+              ○ Is NOT Checked: "Use local DHCP service to distribute IP addresses to VMs
+              ○ Subnet IP: 10.1.1.0 
+              ○ Subnet Mask: 255.255.255.0
+</pre>
+<pre>
 • Step 6: (Optional) Install the Ubuntu Desktop product
           Post-creation of the Ubuntu MAAS-Controller above, I chose to install the Ubuntu Desktop.
           This makes it easier to simulatneously install and configure software and services, as well as reference
