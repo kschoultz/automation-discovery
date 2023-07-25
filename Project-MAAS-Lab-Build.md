@@ -145,16 +145,38 @@ Note: Many of the steps below are taken from the <a href="https://youtu.be/6IRiU
 • Step 7: Add another network adapter (NIC) to the MAAS-Controller VM
           Shutdown the VM, edit the settings and add another NIC that utilizes the newly created <em>Host Only (VMnet1)</em> network above.
           Make sure you click on the <em>Advanced</em> button and generate a MAC address for the NIC.
+
+• Step 8: Power on the MAAS-Controller VM.
+
+• Step 9: Edit the /etc/netplan/00-installer-config.yaml file and unremark the ens34 NIC settings.
+            ♦ sudo vim /etc/netplan/00-installer-config.yaml
+                network:
+                  ethernets:
+                    ens33:
+                      dhcp4: no
+                      addresses: [192.168.1.111/24]
+                      gateway4: 192.168.1.1
+                    ens34:
+                      dhcp4: no
+                      addresses: [10.1.1.1/24]
+                  version: 2
+
+• Step 10: Apply the netplan changes.
+            ♦ sudo netplan apply
+
+            ♦ Run <em>ifconfig -a</em> to verify that ens34 now has the new IP assigned to it.
+
+            ♦ (optional) You may want to reboot the VM to ensure the ens34 NIC retains its newly assigned IP address.
 </pre>
 <pre>
-• Step 6: (Optional) Install the Ubuntu Desktop product
+• Step X: (Optional) Install the Ubuntu Desktop product
           Post-creation of the Ubuntu MAAS-Controller above, I chose to install the Ubuntu Desktop.
           This makes it easier to simulatneously install and configure software and services, as well as reference
           online manuals and searches without having to constantly switch between VMs and my laptop.
           Note that the install takes about 2GB of storage space and a good bit of time (~30-45 minutes). 
 </pre>
 <pre>
-• Step 7: MAAS Install
+• Step X: MAAS Install
           Follow the steps outlined on the <a href="https://maas.io/docs/how-to-get-started-with-maas">How to get started with MAAS</a> documentation.
 
           <ins>Notes and Observations</ins>
