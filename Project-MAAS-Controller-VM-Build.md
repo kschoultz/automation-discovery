@@ -1,4 +1,4 @@
-# Project-MAAS-Lab-Build.md
+# Project-MAAS-Controller-VM-Build.md
 
 Listed below are notes and steps I took to build a lab environment on my laptop to emulate
 an enterprise data center solution for hosting Canonical MAAS/Juju environments. I hosted
