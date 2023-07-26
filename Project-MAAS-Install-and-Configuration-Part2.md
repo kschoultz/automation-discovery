@@ -10,3 +10,12 @@ and/or the HTTP User interface when completing steps or applying changes.
 <img hspace="50" width=900 src="images/MAAS-Upload-SSH-Key02.png">
 
 <img hspace="50" width=900 src="images/MAAS-Upload-SSH-Key03.png">
+
+• Step 2: Set the Netwwork Discovery fabric to the <em>Host Only</em> VLAN (10.1.1.0/24)
+
+<img hspace="50" width=900 src="images/Network-Discovery-Changes01.png">
+<img hspace="50" width=900 src="images/Network-Discovery-Changes02.png">
+
+• Step 3: Remove (delete) any previously discovered machines/devices on the public bridged VLAN (192.168.1.0/24)
+
+<img hspace="50" width=900 src="images/Network-Discovery-Changes03.png">
