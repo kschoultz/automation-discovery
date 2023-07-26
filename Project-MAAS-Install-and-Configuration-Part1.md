@@ -287,3 +287,29 @@
                   "resource_uri": "/MAAS/api/2.0/vlans/5002/"
               }  
 </pre>
+<pre>
+              # Generate an SSH key that will be used by MAAS to access client servers.
+            ○ keith@maas-controller:~$ ssh-keygen
+              Generating public/private rsa key pair.
+              Enter file in which to save the key (/home/keith/.ssh/id_rsa):
+              Enter passphrase (empty for no passphrase):  <--- {leave blank/hit enter key}
+              Enter same passphrase again:  <--- {leave blank/hit enter key}
+              Your identification has been saved in /home/keith/.ssh/id_rsa
+              Your public key has been saved in /home/keith/.ssh/id_rsa.pub
+              The key fingerprint is:
+              SHA256:HCHCOx2e6ndtk2qdzy6W/yDjAVNYs9Fern8mVoHKYBc keith@maas-controller
+              The key's randomart image is:
+              +---[RSA 3072]----+
+              |   .. . . +.     |
+              |    .... + E. .  |
+              |     + oo o..o.  |
+              |    o +. = ..... |
+              |     o  S + ..  .|
+              |    .    o o.   .|
+              |   .     o++.. . |
+              |    . . o.@= .+ o|
+              |     . o.+.*=o.+ |
+              +----[SHA256]-----+
+              keith@maas-controller:~$ ll .ssh/id_rsa.pub
+              -rw-r--r-- 1 keith keith  575 Jul 26 18:00 id_rsa.pub
+</pre>
