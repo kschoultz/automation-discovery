@@ -1,32 +1,30 @@
 # Project-MAAS-Install-and-Configuration.md
 
 <pre>
-
-• Step 1: PostgreSQL: <strong>Do this first!</strong>
-          The <strong>sudo apt install -y postgresql</strong> command will likely install the
-          latest version (in my case 15.3).
-
+• Step 1: <ins>PostgreSQL Install</ins>
+       ○ sudo apt install -y postgresql
+          Note: The command will likely install the latest version (in my case 15.3).
           # Postgres v15.3 Initial Setup
           # Necessary steps from: https://stackoverflow.com/questions/1471571/how-to-configure-postgresql-for-the-first-time
         
-          postgres@maas-controller:~$ psql template1
+       ○ postgres@maas-controller:~$ psql template1
           psql (15.3 (Ubuntu 15.3-0ubuntu0.23.04.1))
           Type "help" for help.
         
-          template1=# ALTER USER postgres with encrypted password '{postgres-passwd}';
+       ○  template1=# ALTER USER postgres with encrypted password '{postgres-passwd}';
           ALTER ROLE
                                     
-          keith@maas-controller:~$ sudo vi /etc/postgresql/15/main/pg_hba.conf                            
+       ○  keith@maas-controller:~$ sudo vi /etc/postgresql/15/main/pg_hba.conf                            
             # Database administrative login by Unix domain socket
             local   all             postgres                                md5
         
-          keith@maas-controller:~$ sudo /etc/init.d/postgresql restart
+       ○  keith@maas-controller:~$ sudo /etc/init.d/postgresql restart
           Restarting postgresql (via systemctl): postgresql.service.
         
-          sudo createuser -U postgres -d -e -E -l -P -r -s keith
+       ○  sudo createuser -U postgres -d -e -E -l -P -r -s keith
     
-<ins>MAAS Install</ins>
-• Step 2: Follow the steps outlined on the <a href="https://maas.io/docs/how-to-get-started-with-maas">How to get started with MAAS</a> documentation.
+• Step 2:<ins>MAAS Install</ins>
+         Follow the steps outlined on the <a href="https://maas.io/docs/how-to-get-started-with-maas">How to get started with MAAS</a> documentation.
 
           ○ MAAS Install: <strong>Do this second!</strong>
                 sudo snap install --channel=3.3 maas
