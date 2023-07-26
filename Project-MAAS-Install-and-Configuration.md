@@ -6,6 +6,8 @@
           Note: The command will likely install the latest version (in my case 15.3).
           # Postgres v15.3 Initial Setup
           # Necessary steps from: https://stackoverflow.com/questions/1471571/how-to-configure-postgresql-for-the-first-time
+
+       ○ sudo su postgres
         
        ○ postgres@maas-controller:~$ psql template1
           psql (15.3 (Ubuntu 15.3-0ubuntu0.23.04.1))
