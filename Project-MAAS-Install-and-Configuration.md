@@ -182,88 +182,108 @@
              For help with the available commands, try:
               
                maas maasadmin --help
-
+</pre>
+<pre>
 • Step 4: <<<a href="https://maas.io/docs/try-out-the-maas-cli"> From: Try out the MAAS CLI</a> >>
-# Set the DNS server IP address
-<strong>maas maasadmin maas set-config name=upstream_dns value=8.8.8.8</strong>
+             # Set the DNS server IP address
+           ○ keith@maas-controller:~$ maas maasadmin maas set-config name=upstream_dns value=8.8.8.8
 
-# find a usable fabric by picking a valid bridge IP address like this:
-<strong>maas maasadmin subnet read 192.168.121.0/24 | grep fabric_id</strong>
-    "fabric_id": 0,
+           ○ keith@maas-controller:~$ maas login maasadmin http://192.168.1.111:5240/MAAS/api/2.0/ $(head -1 api-key-file)
+              
+             You are now logged in to the MAAS server at
+             http://192.168.1.111:5240/MAAS/api/2.0/ with the profile name
+             'maasadmin'.
+              
+             For help with the available commands, try:
+              
+               maas maasadmin --help
+              
+            ○ keith@maas-controller:~$ maas maasadmin maas set-config name=upstream_dns value=8.8.8.8
+              Success.
+              Machine-readable output follows:
+              OK       
+              
+            ○ keith@maas-controller:~$ maas maasadmin maas get-config name=upstream_dns
+              Success.
+              Machine-readable output follows:
+              "8.8.8.8"
+                     
+              # find a usable fabric by picking a valid "Host Only" IP address like this:
+            ○ keith@maas-controller:~$ maas maasadmin subnet read 10.1.1.0/24 | grep fabric_id
+              "fabric_id": 1,
 
-# find the name of the primary rack controller:
-<strong>maas maasadmin rack-controllers read | grep hostname | cut -d '"' -f 4</strong>
-maas-controller
+              # find the name of the primary rack controller:
+            ○ keith@maas-controller:~$ maas maasadmin rack-controllers read | grep hostname | cut -d '"' -f 4
+              maas-controller
 
-# turn on DHCP like this:
-<strong>maas maasadmin ipranges create type=dynamic start_ip=192.168.121.150 end_ip=192.168.121.170</strong>
-Success.
-Machine-readable output follows:
-{
-    "subnet": {
-        "name": "192.168.121.0/24",
-        "description": "",
-        "vlan": {
-            "vid": 0,
-            "mtu": 1500,
-            "dhcp_on": false,
-            "external_dhcp": null,
-            "relay_vlan": null,
-            "fabric_id": 0,
-            "space": "undefined",
-            "name": "untagged",
-            "primary_rack": null,
-            "fabric": "fabric-0",
-            "secondary_rack": null,
-            "id": 5001,
-            "resource_uri": "/MAAS/api/2.0/vlans/5001/"
-        },
-        "cidr": "192.168.121.0/24",
-        "rdns_mode": 2,
-        "gateway_ip": "192.168.121.2",
-        "dns_servers": [],
-        "allow_dns": true,
-        "allow_proxy": true,
-        "active_discovery": false,
-        "managed": true,
-        "disabled_boot_architectures": [],
-        "space": "undefined",
-        "id": 1,
-        "resource_uri": "/MAAS/api/2.0/subnets/1/"
-    },
-    "type": "dynamic",
-    "start_ip": "192.168.121.150",
-    "end_ip": "192.168.121.170",
-    "user": {
-        "is_superuser": true,
-        "username": "maasadmin",
-        "email": "maasadmin@local.domain",
-        "is_local": true,
-        "resource_uri": "/MAAS/api/2.0/users/maasadmin/"
-    },
-    "comment": "",
-    "id": 1,
-    "resource_uri": "/MAAS/api/2.0/ipranges/1/"
-}
+              # turn on DHCP like this:
+            ○ keith@maas-controller:~$ maas maasadmin ipranges create type=dynamic start_ip=10.1.1.2 end_ip=10.1.1.254
+              Success.
+              Machine-readable output follows:
+              {
+                  "subnet": {
+                      "name": "10.1.1.0/24",
+                      "description": "",
+                      "vlan": {
+                          "vid": 0,
+                          "mtu": 1500,
+                          "dhcp_on": false,
+                          "external_dhcp": null,
+                          "relay_vlan": null,
+                          "fabric": "fabric-1",
+                          "id": 5002,
+                          "primary_rack": null,
+                          "fabric_id": 1,
+                          "name": "untagged",
+                          "space": "undefined",
+                          "secondary_rack": null,
+                          "resource_uri": "/MAAS/api/2.0/vlans/5002/"
+                      },
+                      "cidr": "10.1.1.0/24",
+                      "rdns_mode": 2,
+                      "gateway_ip": null,
+                      "dns_servers": [],
+                      "allow_dns": true,
+                      "allow_proxy": true,
+                      "active_discovery": false,
+                      "managed": true,
+                      "disabled_boot_architectures": [],
+                      "id": 4,
+                      "space": "undefined",
+                      "resource_uri": "/MAAS/api/2.0/subnets/4/"
+                  },
+                  "type": "dynamic",
+                  "start_ip": "10.1.1.2",
+                  "end_ip": "10.1.1.254",
+                  "user": {
+                      "is_superuser": true,
+                      "username": "maasadmin",
+                      "email": "maasadmin@local.domain",
+                      "is_local": true,
+                      "resource_uri": "/MAAS/api/2.0/users/maasadmin/"
+                  },
+                  "comment": "",
+                  "id": 1,
+                  "resource_uri": "/MAAS/api/2.0/ipranges/1/"
+              }
 
-# DHCP switch-on
-<strong>maas maasadmin vlan update 0 untagged dhcp_on=True primary_rack=maas-controller</strong>
-Success.
-Machine-readable output follows:
-{
-    "vid": 0,
-    "mtu": 1500,
-    "dhcp_on": true,
-    "external_dhcp": null,
-    "relay_vlan": null,
-    "fabric_id": 0,
-    "space": "undefined",
-    "name": "untagged",
-    "primary_rack": "y7sbwq",
-    "fabric": "fabric-0",
-    "secondary_rack": null,
-    "id": 5001,
-    "resource_uri": "/MAAS/api/2.0/vlans/5001/"
-}
-  
+              # DHCP switch-on
+            ○ keith@maas-controller:~$ maas maasadmin vlan update 1 untagged dhcp_on=True primary_rack=maas-controller
+              Success.
+              Machine-readable output follows:
+              {
+                  "vid": 0,
+                  "mtu": 1500,
+                  "dhcp_on": true,
+                  "external_dhcp": null,
+                  "relay_vlan": null,
+                  "fabric": "fabric-1",
+                  "id": 5002,
+                  "primary_rack": "83nbmc",
+                  "fabric_id": 1,
+                  "name": "untagged",
+                  "space": "undefined",
+                  "secondary_rack": null,
+                  "resource_uri": "/MAAS/api/2.0/vlans/5002/"
+              }  
 </pre>
