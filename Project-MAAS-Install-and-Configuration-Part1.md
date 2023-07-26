@@ -1,4 +1,4 @@
-# Project-MAAS-Install-and-Configuration.md
+# Project-MAAS-Install-and-Configuration-Part1.md
 
 <pre>
 • Step 1: <strong>PostgreSQL Install</strong>
