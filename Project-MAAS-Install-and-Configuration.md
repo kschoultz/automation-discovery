@@ -57,7 +57,7 @@
             maas (3.3/stable) 3.3.4-13189-g.f88272d1e from Canonical✓ installed
 
           <ins>MAAS Initialization</ins>
-            I followed the <em>"How to initialise MAAS for productionC</em> section to initialize MAAS.
+            I followed the <em>"How to initialise MAAS for production</em> section to initialize MAAS.
 
                 $MAAS_DBUSER = maasadmin
                 $MAAS_DBPASS = {maasadmin-passwd}
@@ -109,14 +109,16 @@
            ○ postgres=# \q
                     
            ○ postgres@maas-controller:~$ vi /etc/postgresql/15/main/pg_hba.conf
+             # Add the below user entry to the bottom of the file.
              # TYPE  DATABASE        USER            ADDRESS      METHOD
              host    maascntlrdb     maasadmin       0/0          md5
 
-
+           ○ postgres@maas-controller:~$ exit
                     
-                keith@maas-controller:~$ sudo maas init region+rack --database-uri "postgres://maasadmin:mAAsD3ployment@localhost/maascntlrdb"
-                MAAS URL [default=http://192.168.121.137:5240/MAAS]: 
-                MAAS has been set up.             
+           ○ keith@maas-controller:~$ sudo maas init region+rack --database-uri "postgres://maasadmin:mAAsD3ployment@localhost/maascntlrdb"
+             [sudo] password for keith:
+             MAAS URL [default=http://192.168.1.111:5240/MAAS]:
+             MAAS has been set up.             
 
                 If you want to configure external authentication or use
                 MAAS with Canonical RBAC, please run
@@ -132,34 +134,32 @@
                   sudo maas config-tls enable
 
     
-                *** = Just hit enter key here (no value selected)
+           *** Note: For the following steps, just hit enter key here (no value selected)
     
-                keith@maas-controller:~$ sudo maas configauth
-                [sudo] password for keith: 
-                URL for the Canonical RBAC service (leave blank if not using the service): ***
-                Path of the Candid authentication agent file (leave blank if not using the service): *** 
+           ○ keith@maas-controller:~$ sudo maas configauth
+             [sudo] password for keith: 
+             URL for the Canonical RBAC service (leave blank if not using the service): ***
+             Path of the Candid authentication agent file (leave blank if not using the service): *** 
                  
-                keith@maas-controller:~$ sudo maas createadmin
-                Username: maasadmin
-                Password: 
-                Again: 
-                Email: maasadmin@local.domain
+           ○ keith@maas-controller:~$ sudo maas createadmin
+             Username: maasadmin
+             Password:  <--- {maasadmin passwd}
+             Again:  <--- {maasadmin passwd} 
+             Email: maasadmin@local.domain
                 
-                Import SSH keys [] (lp:user-id or gh:user-id):  ***
-                keith@maas-controller:~$  
+             Import SSH keys [] (lp:user-id or gh:user-id):  ***
+             keith@maas-controller:~$  
 
-    
-                keith@maas-controller:~$ sudo maas status
-                bind9                            RUNNING   pid 39855, uptime 0:05:41
-                dhcpd                            STOPPED   Not started
-                dhcpd6                           STOPPED   Not started
-                http                             RUNNING   pid 40321, uptime 0:05:23
-                ntp                              RUNNING   pid 39987, uptime 0:05:38
-                proxy                            RUNNING   pid 40294, uptime 0:05:26
-                rackd                            RUNNING   pid 39858, uptime 0:05:41
-                regiond                          RUNNING   pid 39860, uptime 0:05:41
-                syslog                           RUNNING   pid 40267, uptime 0:05:28
-                
+           ○ keith@maas-controller:~$ sudo maas status
+             bind9                            RUNNING   pid 39855, uptime 0:05:41
+             dhcpd                            STOPPED   Not started
+             dhcpd6                           STOPPED   Not started
+             http                             RUNNING   pid 40321, uptime 0:05:23
+             ntp                              RUNNING   pid 39987, uptime 0:05:38
+             proxy                            RUNNING   pid 40294, uptime 0:05:26
+             rackd                            RUNNING   pid 39858, uptime 0:05:41
+             regiond                          RUNNING   pid 39860, uptime 0:05:41
+             syslog                           RUNNING   pid 40267, uptime 0:05:28                
 </pre>
 
 <pre>
