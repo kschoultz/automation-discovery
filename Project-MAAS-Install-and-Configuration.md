@@ -1,7 +1,7 @@
 # Project-MAAS-Install-and-Configuration.md
 
 <pre>
-• Step 1: <ins>PostgreSQL Install</ins>
+• Step 1: <strong>PostgreSQL Install</strong>
        ○ sudo apt install -y postgresql
           Note: The command will likely install the latest version (in my case 15.3).
           # Postgres v15.3 Initial Setup
@@ -15,7 +15,9 @@
         
        ○ template1=# ALTER USER postgres with encrypted password '{postgres-passwd}';
          ALTER ROLE
-                                    
+
+       ○ template1=# \q
+       
        ○ postgres@maas-controller:~$ vi /etc/postgresql/15/main/pg_hba.conf                            
          # Database administrative login by Unix domain socket
          local   all             postgres                                md5
@@ -39,20 +41,22 @@
          psql (15.3 (Ubuntu 15.3-0ubuntu0.23.04.1))
          Type "help" for help.
 
-         postgres=# \du
+       ○ postgres=# \du
                                            List of roles
          Role name |                         Attributes                         | Member of
          -----------+------------------------------------------------------------+-----------
          keith     | Superuser, Create role, Create DB                          | {}
          postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
-    
-• Step 2:<ins>MAAS Install</ins>
-         Follow the steps outlined on the <a href="https://maas.io/docs/how-to-get-started-with-maas">How to get started with MAAS</a> documentation.
 
-          ○ MAAS Install: <strong>Do this second!</strong>
-                sudo snap install --channel=3.3 maas
+       ○ postgres=# \q
+                
+• Step 2: <strong>MAAS Install</strong>
+          Follow the steps outlined on the <a href="https://maas.io/docs/how-to-get-started-with-maas">How to get started with MAAS</a> documentation.
 
-          ○ MAAS Initialization: <stong> Do this third!</stong>
+          ○ keith@maas-controller:~$ sudo snap install --channel=3.3 maas
+            maas (3.3/stable) 3.3.4-13189-g.f88272d1e from Canonical✓ installed
+
+          <ins>MAAS Initialization</ins>
             I followed the <em>"How to initialise MAAS for productionC</em> section to initialize MAAS.
 
                 $MAAS_DBUSER = maasadmin
@@ -60,14 +64,56 @@
                 $MAAS_DBNAME = maascntlrdb
                 $HOSTNAME = localhost
 
-                $ sudo -i -u postgres psql -c "CREATE USER \"maasadmin\" WITH ENCRYPTED PASSWORD 'mAAsD3ployment'"  
+           ○ keith@maas-controller:~$ sudo su - postgres
+             [sudo] password for keith:  <--- {keith's passwd}
 
-                $ sudo -i -u postgres createdb -O "maasadmin" "maascntlrdb"
+           ○ postgres@maas-controller:~$ psql -c "CREATE USER \"maasadmin\" WITH ENCRYPTED PASSWORD '{maasadmin passwd}'"
+             Password for user postgres:  <--- {postgres' db passwd}
+             CREATE ROLE
 
-                $ vi /etc/postgresql/15/main/pg_hba.conf
-                    # TYPE  DATABASE        USER            ADDRESS                 METHOD
-                    host    maascntlrdb    	maasadmin       0/0                     md5
+           ○ postgres@maas-controller:~$ psql
+             Password for user postgres:  <--- {postgres' db passwd}
+             psql (15.3 (Ubuntu 15.3-0ubuntu0.23.04.1))
+             Type "help" for help.
 
+           ○ postgres=# \du
+                                               List of roles
+             Role name |                         Attributes                         | Member of
+             -----------+------------------------------------------------------------+-----------
+             keith     | Superuser, Create role, Create DB                          | {}
+             maasadmin |                                                            | {}
+             postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
+                
+           ○ postgres=# \q
+
+           ○ postgres@maas-controller:~$ createdb -O "maasadmin" "maascntlrdb"
+             Password:  <--- {postgres' db passwd}
+              
+           ○ postgres@maas-controller:~$ psql
+             Password for user postgres:  <--- {postgres' db passwd}
+             psql (15.3 (Ubuntu 15.3-0ubuntu0.23.04.1))
+             Type "help" for help.
+              
+             postgres=# \l
+                                                                List of databases
+                 Name     |   Owner   | Encoding |   Collate   |    Ctype    | ICU Locale | Locale Provider |   Access privileges
+             -------------+-----------+----------+-------------+-------------+------------+-----------------+-----------------------
+              maascntlrdb | maasadmin | UTF8     | en_US.UTF-8 | en_US.UTF-8 |            | libc            |
+              postgres    | postgres  | UTF8     | en_US.UTF-8 | en_US.UTF-8 |            | libc            |
+              template0   | postgres  | UTF8     | en_US.UTF-8 | en_US.UTF-8 |            | libc            | =c/postgres          +
+                          |           |          |             |             |            |                 | postgres=CTc/postgres
+              template1   | postgres  | UTF8     | en_US.UTF-8 | en_US.UTF-8 |            | libc            | =c/postgres          +
+                          |           |          |             |             |            |                 | postgres=CTc/postgres
+              (4 rows)
+
+           ○ postgres=# \q
+                    
+           ○ postgres@maas-controller:~$ vi /etc/postgresql/15/main/pg_hba.conf
+             # TYPE  DATABASE        USER            ADDRESS      METHOD
+             host    maascntlrdb     maasadmin       0/0          md5
+
+
+                    
                 keith@maas-controller:~$ sudo maas init region+rack --database-uri "postgres://maasadmin:mAAsD3ployment@localhost/maascntlrdb"
                 MAAS URL [default=http://192.168.121.137:5240/MAAS]: 
                 MAAS has been set up.             
