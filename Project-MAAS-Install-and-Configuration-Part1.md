@@ -217,7 +217,7 @@
               maas-controller
 
               # turn on DHCP like this:
-            ○ keith@maas-controller:~$ maas maasadmin ipranges create type=dynamic start_ip=10.1.1.2 end_ip=10.1.1.254
+            ○ keith@maas-controller:~$ maas maasadmin ipranges create type=dynamic start_ip=10.1.1.20 end_ip=10.1.1.50
               Success.
               Machine-readable output follows:
               {
@@ -227,12 +227,12 @@
                       "vlan": {
                           "vid": 0,
                           "mtu": 1500,
-                          "dhcp_on": false,
+                          "dhcp_on": true,
                           "external_dhcp": null,
                           "relay_vlan": null,
                           "fabric": "fabric-1",
                           "id": 5002,
-                          "primary_rack": null,
+                          "primary_rack": "83nbmc",
                           "fabric_id": 1,
                           "name": "untagged",
                           "space": "undefined",
@@ -253,8 +253,8 @@
                       "resource_uri": "/MAAS/api/2.0/subnets/4/"
                   },
                   "type": "dynamic",
-                  "start_ip": "10.1.1.2",
-                  "end_ip": "10.1.1.254",
+                  "start_ip": "10.1.1.20",
+                  "end_ip": "10.1.1.50",
                   "user": {
                       "is_superuser": true,
                       "username": "maasadmin",
@@ -263,10 +263,10 @@
                       "resource_uri": "/MAAS/api/2.0/users/maasadmin/"
                   },
                   "comment": "",
-                  "id": 1,
-                  "resource_uri": "/MAAS/api/2.0/ipranges/1/"
+                  "id": 4,
+                  "resource_uri": "/MAAS/api/2.0/ipranges/4/"
               }
-
+       
               # DHCP switch-on
             ○ keith@maas-controller:~$ maas maasadmin vlan update 1 untagged dhcp_on=True primary_rack=maas-controller
               Success.
