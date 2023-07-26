@@ -13,17 +13,38 @@
           psql (15.3 (Ubuntu 15.3-0ubuntu0.23.04.1))
           Type "help" for help.
         
-       ○  template1=# ALTER USER postgres with encrypted password '{postgres-passwd}';
-          ALTER ROLE
+       ○ template1=# ALTER USER postgres with encrypted password '{postgres-passwd}';
+         ALTER ROLE
                                     
-       ○  keith@maas-controller:~$ sudo vi /etc/postgresql/15/main/pg_hba.conf                            
-            # Database administrative login by Unix domain socket
-            local   all             postgres                                md5
+       ○ postgres@maas-controller:~$ vi /etc/postgresql/15/main/pg_hba.conf                            
+         # Database administrative login by Unix domain socket
+         local   all             postgres                                md5
+       
+       ○ postgres@maas-controller:~$ exit
+       
+       ○ keith@maas-controller:~$ sudo /etc/init.d/postgresql restart
+         Restarting postgresql (via systemctl): postgresql.service.
+
+       ○ keith@maas-controller:~$ psql template1 -U postgres
+         Password for user postgres:
+         psql (15.3 (Ubuntu 15.3-0ubuntu0.23.04.1))
         
-       ○  keith@maas-controller:~$ sudo /etc/init.d/postgresql restart
-          Restarting postgresql (via systemctl): postgresql.service.
-        
-       ○  sudo createuser -U postgres -d -e -E -l -P -r -s keith
+       ○ keith@maas-controller:~$ sudo createuser -U postgres -d -e -E -l -P -r -s keith
+         Enter password for new role:  <--- {keith's passwd}
+         Enter it again:  <--- {keith's passwd}
+         Password:  <--- {postgres' passwd}
+
+       ○ keith@maas-controller:~$ psql -U postgres
+         Password for user postgres:
+         psql (15.3 (Ubuntu 15.3-0ubuntu0.23.04.1))
+         Type "help" for help.
+
+         postgres=# \du
+                                           List of roles
+         Role name |                         Attributes                         | Member of
+         -----------+------------------------------------------------------------+-----------
+         keith     | Superuser, Create role, Create DB                          | {}
+         postgres  | Superuser, Create role, Create DB, Replication, Bypass RLS | {}
     
 • Step 2:<ins>MAAS Install</ins>
          Follow the steps outlined on the <a href="https://maas.io/docs/how-to-get-started-with-maas">How to get started with MAAS</a> documentation.
