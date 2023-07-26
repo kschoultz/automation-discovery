@@ -115,7 +115,7 @@
 
            ○ postgres@maas-controller:~$ exit
                     
-           ○ keith@maas-controller:~$ sudo maas init region+rack --database-uri "postgres://maasadmin:mAAsD3ployment@localhost/maascntlrdb"
+           ○ keith@maas-controller:~$ sudo maas init region+rack --database-uri "postgres://maasadmin:{maasadmin-passwd}@localhost/maascntlrdb"
              [sudo] password for keith:
              MAAS URL [default=http://192.168.1.111:5240/MAAS]:
              MAAS has been set up.             
@@ -163,15 +163,27 @@
 </pre>
 
 <pre>
-<<<a href="https://maas.io/docs/how-to-do-a-fresh-install-of-maas"> From: How to configure MAAS</a> >>
+• Step 3: <<<a href="https://maas.io/docs/how-to-do-a-fresh-install-of-maas"> From: How to configure MAAS</a> >>
+             # Generate the API-key for the login 
+           ○ keith@maas-controller:~$ sudo maas apikey --username=maasadmin > api-key-file
+             [sudo] password for keith:
+       
+           ○ keith@maas-controller:~$ ll api-key-file
+             -rw-rw-r-- 1 keith keith   71 Jul 26 16:43 api-key-file
 
-# Generate the API-key for the login 
-<strong>sudo maas apikey --username=maasadmin > api-key-file</strong>
+             # Login with the following command
+           ○ keith@maas-controller:~$ maas login maasadmin http://192.168.1.111:5240/MAAS < api-key-file
+             API key (leave empty for anonymous access): ***
+              
+             You are now logged in to the MAAS server at
+             http://192.168.1.111:5240/MAAS/api/2.0/ with the profile name
+             'maasadmin'.
+              
+             For help with the available commands, try:
+              
+               maas maasadmin --help
 
-# Login with the following command
-<strong>maas login maasadmin http://192.168.121.137:5240/MAAS < api-key-file</strong>
-
-<<<a href="https://maas.io/docs/try-out-the-maas-cli"> From: Try out the MAAS CLI</a> >>
+• Step 4: <<<a href="https://maas.io/docs/try-out-the-maas-cli"> From: Try out the MAAS CLI</a> >>
 # Set the DNS server IP address
 <strong>maas maasadmin maas set-config name=upstream_dns value=8.8.8.8</strong>
 
