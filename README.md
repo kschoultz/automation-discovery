@@ -10,7 +10,7 @@ This is a simple repository used to record my personal exploits and observations
 </pre> 
 <pre>
 <h3><strong>Phase 2: Install and configure the Canonical MAAS product</strong>
-         Please review the <a href="https://github.com/kschoultz/automation-discovery/blob/main/Project-MAAS-Install-and-Configuration.md">Project-MAAS-Install-and-Configuration.md</a> document for the step-by-step
+         Please review the <a href="https://github.com/kschoultz/automation-discovery/blob/main/Project-MAAS-Install-and-Configuration-Part1.md">Project-MAAS-Install-and-Configuration-Part1.md</a> document for the step-by-step
          details of how to accomplish this.
 </h3>
 </pre> 
