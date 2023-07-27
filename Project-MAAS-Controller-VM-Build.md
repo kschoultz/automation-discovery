@@ -80,6 +80,7 @@ Note: Many of the steps below are taken from the <a href="https://youtu.be/6IRiU
             Hard Disk(SCSI): 40 GB
             CD/DVD (IDE): points to the install ISO file
             Network Adapter: Custom(VMnet0) <--- this is a bridged network.
+            Network Adapter2: Custom(VMnet1) <--- this is a Host Only network.                
                 Make sure you click on the <em>Advanced</em> button and generate a MAC address for the NIC.
             USB Controller: Present
             Display: Auto Detect
