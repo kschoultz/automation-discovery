@@ -75,8 +75,8 @@ Note: Many of the steps below are taken from the <a href="https://youtu.be/6IRiU
 • Step 2: Install and configure the Ubuntu Server product; this will be called the <em>MAAS-Controller</em>. 
           You'll need to create new VM using the <strong>ubuntu-23.04-live-server-amd64.iso</strong> install file.
           Here are VM settings I used:
-            Memory: 8 GB
-            Processors: 4
+            Memory: 4 GB
+            Processors: 2
             Hard Disk(SCSI): 40 GB
             CD/DVD (IDE): points to the install ISO file
             Network Adapter: Custom(VMnet0) <--- this is a bridged network.
